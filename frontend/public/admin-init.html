@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize Admin User</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            max-width: 90%;
+        }
+        h1 {
+            color: #2563eb;
+            margin-top: 0;
+            text-align: center;
+        }
+        .message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .success {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        .credentials {
+            background-color: #e0e7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .credentials p {
+            margin: 5px 0;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Initialization</h1>
+        <p>Click the button below to create a default admin user.</p>
+        <div id="message" class="message" style="display: none;"></div>
+        <div id="credentials" class="credentials" style="display: none;">
+            <h3>Admin Credentials</h3>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Password:</strong> <span id="password"></span></p>
+            <p>Please save these credentials and use them to log in.</p>
+        </div>
+        <button id="initButton">Initialize Admin User</button>
+        <div class="login-link">
+            <a href="/login">Go to Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('initButton').addEventListener('click', async () => {
+            const messageElement = document.getElementById('message');
+            const credentialsElement = document.getElementById('credentials');
+            const emailElement = document.getElementById('email');
+            const passwordElement = document.getElementById('password');
+            const initButton = document.getElementById('initButton');
+
+            try {
+                initButton.disabled = true;
+                initButton.textContent = 'Initializing...';
+                
+                const response = await fetch('http://localhost:5000/api/admin/init', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    messageElement.className = 'message success';
+                    messageElement.textContent = data.message;
+                    messageElement.style.display = 'block';
+                    
+                    // Display credentials
+                    emailElement.textContent = data.credentials.email;
+                    passwordElement.textContent = data.credentials.password;
+                    credentialsElement.style.display = 'block';
+                    
+                    initButton.textContent = 'Admin Initialized';
+                } else {
+                    messageElement.className = 'message error';
+                    messageElement.textContent = data.message;
+                    messageElement.style.display = 'block';
+                    initButton.disabled = false;
+                    initButton.textContent = 'Initialize Admin User';
+                }
+            } catch (error) {
+                messageElement.className = 'message error';
+                messageElement.textContent = 'Failed to initialize admin user. Please try again.';
+                messageElement.style.display = 'block';
+                initButton.disabled = false;
+                initButton.textContent = 'Initialize Admin User';
+            }
+        });
+    </script>
+</body>
+</html> 

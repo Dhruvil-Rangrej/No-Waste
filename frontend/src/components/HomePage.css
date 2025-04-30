@@ -1,0 +1,292 @@
+/* HomePage.css */
+.home-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero Section & Carousel */
+.hero-section {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.carousel {
+  height: 100%;
+  position: relative;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.carousel-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.carousel-content p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  z-index: 2;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  margin: 0 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background-color: #fff;
+  transform: scale(1.2);
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #2010d4;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2010d4;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #FFF;
+  color: #2010d4;
+  border: 2px solid #2010d4;
+}
+
+.btn-secondary:hover {
+  background-color: #F5F5F5;
+  transform: translateY(-2px);
+}
+
+.btn-large {
+  padding: 14px 32px;
+  font-size: 1.2rem;
+}
+
+/* Main Content */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.welcome-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #2010d4;
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* How It Works Section */
+.how-it-works {
+  margin-bottom: 4rem;
+}
+
+.how-it-works h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #2010d4;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.step {
+  flex: 1;
+  min-width: 250px;
+  padding: 1.5rem;
+  background-color: #F9F9F9;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #2010d4;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+}
+
+.step h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Why Donate Section */
+.why-donate {
+  margin-bottom: 4rem;
+}
+
+.why-donate h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #2010d4;
+}
+
+.reasons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.reason {
+  flex: 1;
+  min-width: 250px;
+  padding: 1.5rem;
+  background-color: #F9F9F9;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.reason:hover {
+  transform: translateY(-5px);
+}
+
+.reason h3 {
+  color: #2010d4;
+  margin-bottom: 0.5rem;
+}
+
+/* Mission Statement */
+.mission-statement {
+  text-align: center;
+  padding: 3rem 0;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.mission-statement p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-style: italic;
+}
+
+/* Footer */
+.home-footer {
+  text-align: center;
+  padding: 2rem 0;
+  background-color: #333;
+  color: #fff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .carousel-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .carousel-content p {
+    font-size: 1.2rem;
+  }
+  
+  .steps, .reasons {
+    flex-direction: column;
+  }
+  
+  .step, .reason {
+    min-width: 100%;
+  }
+  
+  .welcome-section h2, .how-it-works h2, .why-donate h2 {
+    font-size: 2rem;
+  }
+  
+  .mission-statement p {
+    font-size: 1.2rem;
+  }
+}
