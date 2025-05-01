@@ -25,7 +25,7 @@ const CreateEvent = () => {
         return;
       }
 
-      await axios.post(`http://localhost:5000/api/events`, {
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/events`, {
         date,
         location,
         foodDetails: {

@@ -15,7 +15,7 @@ const Signup = () => {
   const handleSignup = async(e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(`http://localhost:5000/api/auth/signup`, { name, email, password, role });
+      const { data } = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/signup`, { name, email, password, role });
       login(data);
       if (data.role === 'donor') {
         navigate('/donor/dashboard');

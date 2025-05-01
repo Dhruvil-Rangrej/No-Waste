@@ -23,7 +23,7 @@ const NgoDashboard = () => {
         return;
       }
 
-      let url = `http://localhost:5000/api/events`;
+      let url = `${process.env.REACT_APP_API_BASE_URL}/api/events`;
       const params = new URLSearchParams();
       
       if (filterLocation) params.append('location', filterLocation);
