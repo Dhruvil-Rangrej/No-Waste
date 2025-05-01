@@ -36,7 +36,7 @@ const AnalyticsDashboard = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/analytics/dashboard', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/analytics/dashboard`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       
