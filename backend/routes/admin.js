@@ -25,13 +25,6 @@ router.post('/init', async (req, res) => {
       profile: {
         name: 'Admin User'
       },
-      location: {
-        address: 'Admin Office',
-        coordinates: {
-          type: 'Point',
-          coordinates: [0, 0]
-        }
-      },
       active: true
     });
     

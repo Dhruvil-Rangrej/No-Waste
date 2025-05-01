@@ -8,17 +8,11 @@ const { protect } = require('../middleware/auth');
 router.post('/', protect, async (req, res) => {
   const { date, location, foodDetails } = req.body;
   try {
-    // Create event with proper location structure
+    // Create event with address
     const event = new Event({
       donor: req.user._id,
       date,
-      location: {
-        address: location,
-        coordinates: {
-          type: 'Point',
-          coordinates: [0, 0] // Default coordinates, should be updated with actual geocoding
-        }
-      },
+      pickupAddress: location,
       foodDetails,
       status: 'pending'
     });
@@ -69,7 +63,7 @@ router.get('/', protect, async (req, res) => {
     let query = { status: 'pending' };
 
     if (req.query.location) {
-      query['location.address'] = new RegExp(req.query.location, 'i');
+      query['pickupAddress'] = new RegExp(req.query.location, 'i');
     }
     if (req.query.type) {
       query['foodDetails.type'] = new RegExp(req.query.type, 'i');
@@ -124,13 +118,7 @@ router.put('/:id', protect, async (req, res) => {
     const { date, location, foodDetails } = req.body;
 
     if (location) {
-      event.location = {
-        address: location,
-        coordinates: {
-          type: 'Point',
-          coordinates: [0, 0] // Should be updated with actual geocoding
-        }
-      };
+      event.pickupAddress = location;
     }
 
     if (date) event.date = date;

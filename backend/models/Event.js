@@ -36,22 +36,9 @@ const eventSchema = new mongoose.Schema({
     storageInstructions: String,
     allergens: [String]
   },
-  location: {
-    address: {
-      type: String,
-      required: true
-    },
-    coordinates: {
-      type: {
-        type: String,
-        enum: ['Point'],
-        default: 'Point'
-      },
-      coordinates: {
-        type: [Number],
-        required: true
-      }
-    }
+  pickupAddress: {
+    type: String,
+    required: true
   },
   pickupTime: {
     from: Date,
@@ -71,13 +58,11 @@ const eventSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Index for geospatial queries
-eventSchema.index({ "location.coordinates": "2dsphere" });
-
 // Index for analytics queries
 eventSchema.index({ date: 1 });
 eventSchema.index({ status: 1 });
 eventSchema.index({ "foodDetails.type": 1 });
+eventSchema.index({ pickupAddress: 1 });
 
 const Event = mongoose.model('Event', eventSchema);
 

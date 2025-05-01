@@ -33,13 +33,6 @@ const createAdminUser = async () => {
       profile: {
         name: 'Admin User'
       },
-      location: {
-        address: 'Admin Office',
-        coordinates: {
-          type: 'Point',
-          coordinates: [0, 0]
-        }
-      },
       active: true
     });
     

@@ -12,6 +12,7 @@ const DonorDashboard = () => {
 
   
   const fetchEvents = async () => {
+    setLoading(true);
     try {
       if (!user) {
         navigate('/login');
@@ -19,7 +20,7 @@ const DonorDashboard = () => {
       }
       
       // Fetch donor events using the token from auth context
-      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/events/mine`, {
+      const response = await axios.get(`http://localhost:5000/api/events/mine`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       

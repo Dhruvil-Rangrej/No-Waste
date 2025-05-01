@@ -10,18 +10,22 @@ const CreateEvent = () => {
   const [foodType, setFoodType] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
   const handleCreate = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    
     try {
       if (!user) {
         navigate('/login');
         return;
       }
 
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/events`, {
+      await axios.post(`http://localhost:5000/api/events`, {
         date,
         location,
         foodDetails: {
@@ -39,6 +43,7 @@ const CreateEvent = () => {
       } else {
         setError(error.response?.data.message || 'Error creating event');
       }
+      setIsSubmitting(false);
     }
   };
 
@@ -114,8 +119,8 @@ const CreateEvent = () => {
           <button type="button" className="cancel-button" onClick={handleCancel}>
             Cancel
           </button>
-          <button type="submit" className="create-button">
-            Create Event
+          <button type="submit" className="create-button" disabled={isSubmitting}>
+            {isSubmitting ? 'Creating...' : 'Create Event'}
           </button>
         </div>
       </form>

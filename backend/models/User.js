@@ -36,17 +36,6 @@ const userSchema = new mongoose.Schema({
     },
     avatar: String
   },
-  location: {
-    address: String,
-    coordinates: {
-      type: {
-        type: String,
-        enum: ['Point'],
-        default: 'Point'
-      },
-      coordinates: [Number]
-    }
-  },
   preferences: {
     foodTypes: [String],
     maxDistance: Number,
@@ -97,9 +86,6 @@ const userSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-
-// Index for geospatial queries
-userSchema.index({ "location.coordinates": "2dsphere" });
 
 // Index for common queries
 userSchema.index({ role: 1 });
