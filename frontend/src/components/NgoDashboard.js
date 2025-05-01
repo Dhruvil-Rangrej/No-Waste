@@ -56,7 +56,7 @@ const NgoDashboard = () => {
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/events/accepted', {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/events/accepted`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setAcceptedEvents(response.data);
